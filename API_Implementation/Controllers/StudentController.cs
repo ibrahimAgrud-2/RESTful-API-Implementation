@@ -96,7 +96,7 @@ namespace API_Implementation.Controllers
             {
                 return NotFound($"No Student with ID {ID}");
             }
-            return Ok(student);
+            return Ok("no");
         }
 
     }
