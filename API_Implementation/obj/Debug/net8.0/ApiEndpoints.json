@@ -1,6 +1,33 @@
 [
   {
     "ContainingType": "API_Implementation.Controllers.StudentController",
+    "Method": "GetStudentByID",
+    "RelativePath": "api/Students/{ID}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "API_Implementation.Student",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "GetStudentById"
+  },
+  {
+    "ContainingType": "API_Implementation.Controllers.StudentController",
     "Method": "GetStudentList",
     "RelativePath": "api/Students/All",
     "HttpMethod": "GET",

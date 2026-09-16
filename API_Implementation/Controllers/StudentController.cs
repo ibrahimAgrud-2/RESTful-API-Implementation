@@ -44,6 +44,8 @@ namespace API_Implementation.Controllers
 
 
         [HttpGet("AverageGrade")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<double> GetAverageGrade()
         {
 
@@ -55,6 +57,46 @@ namespace API_Implementation.Controllers
                 return NotFound("No Student Available");
             }
             return Ok(StudentDataSimulation.StudentList.Average(student=>student.Grade));
+        }
+
+
+        //[HttpGet("{ID}",Name ="GetStudentById")]
+        //public ActionResult<Student> GetStudentByID(int ID)
+        //{
+        //    if(ID<1)
+        //    {
+        //        return BadRequest($"Not Accepted ID {ID}");
+        //    }
+
+        //    var student = StudentDataSimulation.StudentList.FirstOrDefault(student => student.ID == ID);
+        //    if (student==null)
+        //    {
+        //        return NotFound($"No Student with ID {ID}");
+        //    }
+        //    return Ok(student);
+        //}
+        [HttpGet("{ID}", Name = "GetStudentById")]
+
+        //Normalde default olarak sadeec 200 ok success kodu dokümante edilmiş olur. Ama bu fonksiyonsa 3 farklı durum var.
+        //Yani 3 farklı dönüş tipi olaiblir. Bunu bu API dökümanstasyonuna eklemek için bu attribut'ları ekleriz
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+        //Bu attributalar ile birlikte artık mesela swaggerda bu fonksiyonun 3 farklı respons türü olduğu belli olur. Veya bu Endpoint'ı reflection ile okuyan herhangi bir araç içinde bu geçelidir. Bu Endpoint için metadata eklemiş olduk
+        public ActionResult<Student> GetStudentByID(int ID)
+        {
+            if (ID < 1)
+            {
+                return BadRequest($"Not Accepted ID {ID}");
+            }
+
+            var student = StudentDataSimulation.StudentList.FirstOrDefault(student => student.ID == ID);
+            if (student == null)
+            {
+                return NotFound($"No Student with ID {ID}");
+            }
+            return Ok(student);
         }
 
     }
