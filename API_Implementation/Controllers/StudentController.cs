@@ -42,5 +42,20 @@ namespace API_Implementation.Controllers
             return Ok(StudentDataSimulation.StudentList.Where(student=>student.Grade>50).ToList());
         }
 
+
+        [HttpGet("AverageGrade")]
+        public ActionResult<double> GetAverageGrade()
+        {
+
+          
+            //Çeşitlilik olamsı açısından bu sefer eğer hiç student yoksa notFound status code'u dönderelim
+            if(StudentDataSimulation.StudentList.Count==0)
+            {
+                //bu No Student Available mesajı body'de gidecek. 
+                return NotFound("No Student Available");
+            }
+            return Ok(StudentDataSimulation.StudentList.Average(student=>student.Grade));
+        }
+
     }
 }

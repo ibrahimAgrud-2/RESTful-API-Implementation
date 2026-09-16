@@ -5,7 +5,7 @@
     "version": "1.0"
   },
   "paths": {
-    "/api/Students": {
+    "/api/Students/All": {
       "get": {
         "tags": [
           "Student"
@@ -43,7 +43,7 @@
         }
       }
     },
-    "/api/Students/PassedStudents": {
+    "/api/Students/Passed": {
       "get": {
         "tags": [
           "Student"
@@ -74,6 +74,38 @@
                   "items": {
                     "$ref": "#/components/schemas/Student"
                   }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Students/AverageGrade": {
+      "get": {
+        "tags": [
+          "Student"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "number",
+                  "format": "double"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "number",
+                  "format": "double"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "number",
+                  "format": "double"
                 }
               }
             }

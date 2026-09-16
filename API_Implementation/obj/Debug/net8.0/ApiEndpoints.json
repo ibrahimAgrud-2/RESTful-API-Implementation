@@ -2,7 +2,7 @@
   {
     "ContainingType": "API_Implementation.Controllers.StudentController",
     "Method": "GetStudentList",
-    "RelativePath": "api/Students",
+    "RelativePath": "api/Students/All",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -21,8 +21,28 @@
   },
   {
     "ContainingType": "API_Implementation.Controllers.StudentController",
+    "Method": "GetAverageGrade",
+    "RelativePath": "api/Students/AverageGrade",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Double",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "API_Implementation.Controllers.StudentController",
     "Method": "GetPassedStudents",
-    "RelativePath": "api/Students/PassedStudents",
+    "RelativePath": "api/Students/Passed",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
