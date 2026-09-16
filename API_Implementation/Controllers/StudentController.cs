@@ -4,6 +4,7 @@ using System.Data;
 
 namespace API_Implementation.Controllers
 {
+    //Genel API URL'inde API/Students olarak gözükecek.
     [Route("api/Students")]
     [ApiController]
     public class StudentController : ControllerBase
@@ -21,13 +22,25 @@ namespace API_Implementation.Controllers
 
 
         //Yukarda açıkladığımız sebepten ötürü veri döndereceğin zaman ActionResult ile döndermelisin
-        //IEnumarable ise client kısmı için list, array, dictionary fark etmeyeceği, onu sadece JSON formatında veri alacağı için hangi türden veri döndürdüğümüzün pek önemi yok. Daha doğrusu sadeec List<Student> demek yerine durumu daha geneleştiriyoruz. IEnumarable<student> diyoruz. IEnumarable zaten list'in daha genil halidir. Bu durumda biz geriye bir koleksiyon döncekek. Ne olduğu pek önemli diğer onu al ve JSON olarak istediğini yap
-        [HttpGet]
+        //Action Result geriye veriyi ve o request'in status code'unu action result kutusu içinde gönderir kodu dönderir  
+        //IEnumarable ise client kısmı için list, array, dictionary fark etmeyeceği, onu sadece JSON formatında veri alacağı için hangi türden veri döndürdüğümüzün pek önemi yok. Daha doğrusu sadeec List<Student> demek yerine durumu daha geneleştiriyoruz. IEnumarable<student> diyoruz. IEnumarable zaten list'in daha geniş halidir. Bu durumda biz geriye bir koleksiyon döncekek. Ne olduğu pek önemli diğer onu al ve JSON olarak istediğini yap şeklinde düşünüyoruz.
+        //!!!! Arka planda ASP framework JSON serialization ile veriyi JSON'a çeviriyor
+        [HttpGet("All")]
         public ActionResult<IEnumerable<Student>> GetStudentList()
         {
             return Ok(StudentDataSimulation.StudentList);
         }
 
+
+
+        //isimlendirmeler ile (all, passed) attriburte'lar birbirinden farklı olmuş oldu. Ama daha okunaklı URL'lere adına Attrüburlara her zaman değişkenlerde olduğu gibi alakalı isim vermek gerekir.
+
+
+        [HttpGet("Passed")]
+        public ActionResult<IEnumerable<Student>> GetPassedStudents()
+        {
+            return Ok(StudentDataSimulation.StudentList.Where(student=>student.Grade>50).ToList());
+        }
 
     }
 }
