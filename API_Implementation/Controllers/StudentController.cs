@@ -165,6 +165,7 @@ namespace API_Implementation.Controllers
             }
 
             student.FirstName = updatedStudent.FirstName;
+            student.LastName = updatedStudent.LastName;
             student.Age = updatedStudent.Age;
             student.Grade = updatedStudent.Grade;
 
