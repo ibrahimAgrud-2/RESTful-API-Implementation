@@ -117,6 +117,34 @@ namespace API_Implementation.Controllers
             return CreatedAtRoute("GetStudentById", new { ID=newStudent.ID},newStudent);
 
         }
-        
+
+
+        [HttpDelete("{ID}")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public ActionResult DeleteStudent(int ID)
+        {
+
+            if(ID<1)
+            {
+                return BadRequest($"ID is not Valid. ID= {ID}");
+            }
+            if(StudentDataSimulation.StudentList.Count(student => student.ID == ID) == 0)
+            {
+                return NotFound($"Student with ID {ID} could not be found.");
+            }
+
+            StudentDataSimulation.StudentList.RemoveAll(student=>student.ID==ID);
+
+            return NoContent();
+
+            //buda çalışır ama REST API'da delete işlemi yapıldıktan sonra 204 no content code body'siz döndürülür
+            //  return Ok(true);
+
+
+        }
+
+
     }
 }
