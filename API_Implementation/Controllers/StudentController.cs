@@ -146,5 +146,31 @@ namespace API_Implementation.Controllers
         }
 
 
+ 
+        [HttpPut("{id}", Name = "UpdateStudent")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult<Student> UpdateStudent(int id, Student updatedStudent)
+        {
+            if (id < 1 || updatedStudent == null || string.IsNullOrEmpty(updatedStudent.FirstName) || updatedStudent.Age < 0 || updatedStudent.Grade < 0)
+            {
+                return BadRequest("Invalid student data.");
+            }
+
+            var student = StudentDataSimulation.StudentList.FirstOrDefault(s => s.ID == id);
+            if (student == null)
+            {
+                return NotFound($"Student with ID {id} not found.");
+            }
+
+            student.FirstName = updatedStudent.FirstName;
+            student.Age = updatedStudent.Age;
+            student.Grade = updatedStudent.Grade;
+
+            return Ok(student);
+        }
+
+
     }
 }

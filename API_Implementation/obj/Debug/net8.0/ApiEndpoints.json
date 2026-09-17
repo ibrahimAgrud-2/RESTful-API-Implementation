@@ -36,6 +36,46 @@
   },
   {
     "ContainingType": "API_Implementation.Controllers.StudentController",
+    "Method": "UpdateStudent",
+    "RelativePath": "api/Students",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UpdateStudent",
+        "Type": "API_Implementation.Student",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 201
+      }
+    ]
+  },
+  {
+    "ContainingType": "API_Implementation.Controllers.StudentController",
     "Method": "GetStudentByID",
     "RelativePath": "api/Students/{ID}",
     "HttpMethod": "GET",
@@ -88,13 +128,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "studentID",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
         "Name": "ID",
-        "Type": "",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
